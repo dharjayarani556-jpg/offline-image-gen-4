@@ -43,24 +43,3 @@ jobs:
           name: DARK-JISAN-APK
           path: app/build/outputs/apk/debug/*.apk
           retention-days: 30
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        if: success()
-        with:
-          tag_name: v1.0.${{ github.run_number }}
-          name: DARK JISAN APK v1.0.${{ github.run_number }}
-          body: |
-            **DARK JISAN - Offline Image Generation**
-
-            Download the APK and install it on your Android phone.
-
-            After install:
-            1. Open the app
-            2. Select your MediaPipe model folder (sd15_bing)
-            3. Write a prompt and Generate
-
-            Progress will also show in the notification bar.
-          files: app/build/outputs/apk/debug/*.apk
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
